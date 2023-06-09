@@ -87,7 +87,7 @@ export class DiscordBot extends Client {
 
 
             const eventsPath = path.join(this.config.dirname, this.config.directories.events);
-            console.log(eventsPath)
+        
 
             const files = fs.readdirSync(eventsPath).filter(file => file.endsWith('ts') || file.endsWith('.js'));
             const EventsLogs = [];
@@ -95,22 +95,22 @@ export class DiscordBot extends Client {
                 const filePath = path.join(eventsPath, file);
                 const event = require(filePath);
 
-                if ("name" in event && "run" in event) {
+                if ("name" in event && "execute" in event) {
                     this.Events.set(event.name, event);
 
 
 
 
                     if (event.once) {
-                        this.once(event.name, event.run.bind(null, this))
+                        this.once(event.name, event.execute.bind(null, this))
                         EventsLogs.push(`${file}:(once:true):${event.name}`)
                     } else {
-                        this.on(event.name, event.run.bind(null, this))
+                        this.on(event.name, event.execute.bind(null, this))
                         EventsLogs.push(`${file}:(once:false):${event.name}`)
                     }
 
                 } else {
-                    console.warn(`[WARNING] missing name or run keys in ${file}`);
+                    console.warn(`[WARNING] Missing name or execute keys in ${file}`);
                 }
 
 

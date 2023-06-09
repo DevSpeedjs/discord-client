@@ -41,7 +41,7 @@ const { EventHandler } = require("@devspeed/discord-client");
 
 module.exports = new EventHandler({
     name: "ready",
-    run: (client) => {
+    execute: (client) => {
         console.log(`${client.user.tag} ready`);
     }
 });

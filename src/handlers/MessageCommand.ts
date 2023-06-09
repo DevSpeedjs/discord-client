@@ -8,9 +8,8 @@ export interface IMessageCommand {
     aliases?: string[],
     cooldown?: string | number,
     disabled?: boolean,
-    enabled?: boolean,
     catagory?: string,
-    execute: (client: string, message: Message, ...args: string[]) => void | Promise<void>
+    execute: (client: DiscordBot, message: Message, args: string[]) => void | Promise<void>
 }
 export class MessageCommand implements IMessageCommand {
     name: string;
@@ -18,9 +17,8 @@ export class MessageCommand implements IMessageCommand {
     aliases?: string[] | undefined;
     cooldown?: string | number | undefined;
     disabled?: boolean | undefined;
-    enabled?: boolean | undefined;
     catagory?: string | undefined;
-    execute: (client: string, message: Message, ...args: string[]) => void | Promise<void>;
+    execute: (client: DiscordBot, message: Message, args: string[]) => void | Promise<void>;
 
     constructor(createOptions: IMessageCommand) {
         this.name = createOptions.name;
@@ -32,12 +30,8 @@ export class MessageCommand implements IMessageCommand {
         if (createOptions.cooldown) {
             this.cooldown = createOptions.cooldown;
         }
-        if (createOptions.enabled) {
-            this.enabled = createOptions.enabled;
-        }
-
         if (createOptions.disabled) {
-            this.disabled = createOptions.disabled
+            this.disabled = createOptions.disabled;
         }
 
         if (createOptions.catagory) {

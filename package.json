@@ -13,7 +13,7 @@
     "discord.js": "^14.11.0"
   },
 
-  "keywords": ["discord", "discord bot", "command handler"],
+  "keywords": ["discord", "discord bot", "command handler", "discord bot client"],
 
   "peerDependencies": {
     "discord.js": "^14.11.0"

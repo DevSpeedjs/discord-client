@@ -3,11 +3,11 @@ import { DiscordBot } from "../DiscordBot";
 export declare type EventHandlerOptions<T extends keyof ClientEvents> = {
     name: T;
     once?: boolean;
-    run: (client: DiscordBot, event: ClientEvents[T][0]) => void;
+    execute: (client: DiscordBot, event: ClientEvents[T][0]) => void;
 };
 export declare class EventHandler<T extends keyof ClientEvents> {
     name: T;
     once?: boolean;
-    run: (client: DiscordBot, event: ClientEvents[T][0]) => void;
+    execute: (client: DiscordBot, event: ClientEvents[T][0]) => void;
     constructor(options: EventHandlerOptions<T>);
 }
