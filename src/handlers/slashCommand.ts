@@ -1,17 +1,13 @@
-import { DiscordBot } from "../DiscordBot";
-import { SlashCommandBuilder, ChatInputCommandInteraction, CacheType } from 'discord.js'
 
-export interface IslashCommand {
+import { SlashCommandBuilder, ChatInputCommandInteraction, CacheType, Client } from 'discord.js'
+import { Interfaces } from "../types";
+
+
+export class SlashCommand implements Interfaces.ISlashCommand {
     data: SlashCommandBuilder;
-    execute: (client: DiscordBot, interaction: ChatInputCommandInteraction) => void | Promise<void>
-}
+    execute: Interfaces.ISlashCommand["execute"];
 
-
-export class SlashCommand implements IslashCommand {
-    data: SlashCommandBuilder;
-    execute: (client: DiscordBot, interaction: ChatInputCommandInteraction<CacheType>) => void | Promise<void>;
-
-    constructor(createOptions: IslashCommand) {
+    constructor(createOptions: Interfaces.ISlashCommand) {
         this.data = createOptions.data;
         this.execute = createOptions.execute;
 

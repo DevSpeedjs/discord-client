@@ -1,11 +1,19 @@
 {
   "name": "@devspeed/discord-client",
-  "version": "1.0.0",
-  "description": "A discord package that allows you to create a discord bot faster",
+  "version": "1.0.4",
+  "description": "A discordjs package that provide you with util functions and classes to help speed up your development",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
+  "homepage": "https://www.buymeacoffee.com/netlinedevs",
+  "donations": "https://www.buymeacoffee.com/netlinedevs",
+  
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DevSpeedjs/discord-client/tree/master"
+  },
   "scripts": {
     "test": "node ./test/index.js"
+   
   },
   "author": "",
   "license": "(GPL-3.0)",
@@ -13,7 +21,16 @@
     "discord.js": "^14.11.0"
   },
 
-  "keywords": ["discord", "discord bot", "command handler", "discord bot client"],
+  "keywords": ["discord", 
+  "discord bot", 
+  "command handler", 
+  "discord bot client",
+  "discord command handler",
+   "discord Recursive commmand Loader",
+   "Recursive loader",
+   "discordjs",
+   "discord"
+  ],
 
   "peerDependencies": {
     "discord.js": "^14.11.0"

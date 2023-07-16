@@ -1,26 +1,19 @@
-import { DiscordBot } from "../DiscordBot"
-import { SlashCommandBuilder, ChatInputCommandInteraction, CacheType, Message } from "discord.js";
 
+import { SlashCommandBuilder, ChatInputCommandInteraction, CacheType, Message, Client } from "discord.js";
+import { Interfaces } from "../types";
 
-export interface IMessageCommand {
-    name: string,
-    description: string,
-    aliases?: string[],
-    cooldown?: string | number,
-    disabled?: boolean,
-    catagory?: string,
-    execute: (client: DiscordBot, message: Message, args: string[]) => void | Promise<void>
-}
-export class MessageCommand implements IMessageCommand {
+type ExecuteFunction<T extends Client> = (client: T, message: Message, ...args: string[]) => Promise<void> | void;
+
+export class MessageCommand implements Interfaces.IMessageCommand {
     name: string;
-    description: string;
+    description?: string;
     aliases?: string[] | undefined;
     cooldown?: string | number | undefined;
     disabled?: boolean | undefined;
     catagory?: string | undefined;
-    execute: (client: DiscordBot, message: Message, args: string[]) => void | Promise<void>;
+    execute: Interfaces.IMessageCommand['execute'];
 
-    constructor(createOptions: IMessageCommand) {
+    constructor(createOptions: Interfaces.IMessageCommand) {
         this.name = createOptions.name;
         this.description = createOptions.description;
         this.execute = createOptions.execute;
@@ -30,12 +23,12 @@ export class MessageCommand implements IMessageCommand {
         if (createOptions.cooldown) {
             this.cooldown = createOptions.cooldown;
         }
-        if (createOptions.disabled) {
-            this.disabled = createOptions.disabled;
+        if (createOptions.enabled) {
+            this.disabled = createOptions.enabled;
         }
 
-        if (createOptions.catagory) {
-            this.catagory = createOptions.catagory;
+        if (createOptions.category) {
+            this.catagory = createOptions.category;
         }
         return this;
     }
